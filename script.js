@@ -1,4 +1,16 @@
 //Game Functions Section
+function playerIntroduction() {
+    let playerIntro = prompt("🌟 Hey there! Nice to meet ya! What's your name? 🌟");
+    playerName = playerIntro.trim();
+    if((playerName === null ) || (playerName == "")) {
+        alert("😱 So, I'm scared of ghosts! 👻 And I won't be playing with one!! Byeee!💨");
+        validRound = 5;
+        gameOver(2);
+    } else {
+        alert(`Hi, ${playerName}! Let's play some Rock-Paper-Scissors, shall we? Best of 5, okay? 🤩`);
+    }
+}
+
 function gameStart() {
     playerPlay();
 }
@@ -79,11 +91,15 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function gameOver(flag = null) {
-    if(flag) {
-        alert("🥲 So you don't wanna play anymore with me? Okay then, bye! 👋🏻");
+function gameOver(flag) {
+    if(flag == 1) {
+        alert("🤨 Cancelling your play?? So you don't wanna play anymore with me? 🥲 Okay then, bye! 👋🏻");
+        console.log("Game finished");
         validRound = 5;
         exitFlag = 1;
+    } else if (flag == 2) {
+        console.log("The computer ran away!");
+        exitFlag = 2;
     } else {
         let finalScoreMessage = `🏅 Final Score: ${playerName}: ${playerScore} ⚔️ Computer: ${computerScore} 🏅`;
         if(playerScore > computerScore) {
@@ -100,15 +116,15 @@ function gameOver(flag = null) {
 }
 //End of Game Functions Section
 
-let playerName = prompt("🌟 Hey there! Nice to meet ya! What's your name? 🌟");
-alert(`Hi, ${playerName}! Let's play some Rock-Paper-Scissors, shall we? 🤩`);
-
+let playerName = "";
 let playerScore = 0;
 let computerScore = 0;
 let validRound = 0;
 let exitFlag = 0;
 
 const computerPlayArray = ["rock", "paper", "scissors"];
+
+playerIntroduction();
 
 while(validRound < 5) {
     gameStart();
