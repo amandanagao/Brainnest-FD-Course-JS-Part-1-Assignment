@@ -1,12 +1,13 @@
 //Game Functions Section
 function playerIntroduction() {
     let playerIntro = prompt("🌟 Hey there! Nice to meet ya! What's your name? 🌟");
-    playerName = playerIntro.trim();
-    if((playerName === null ) || (playerName == "")) {
+    playerName = playerIntro;
+    if((playerName == null ) || (playerName == "")) {
         alert("😱 So, I'm scared of ghosts! 👻 And I won't be playing with one!! Byeee!💨");
         validRound = 5;
         gameOver(2);
     } else {
+        playerName = playerIntro.trim();
         alert(`Hi, ${playerName}! Let's play some Rock-Paper-Scissors, shall we? Best of 5, okay? 🤩`);
     }
 }
