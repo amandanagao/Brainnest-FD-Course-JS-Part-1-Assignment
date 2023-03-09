@@ -1,6 +1,6 @@
 //Game Functions Section
 
-//Introduction of the player
+//Greeting the player and the user friendly alerts
 function playerIntroduction() {
     let playerIntro = prompt("🌟 Hey there! Nice to meet ya! What's your name? 🌟");
     playerName = playerIntro;
@@ -30,7 +30,7 @@ function gameStart() {
     playerPlay();
 }
 
-//Computer and Player plays
+//Choice of computer and player
 function computerPlay() {
     const computerRandomPlay = computerPlayArray[Math.floor(Math.random() * 3)];
     return computerRandomPlay;
@@ -58,7 +58,7 @@ function errorCheck(playerOption) {
     }
 }
 
-//Compare and confirm the round
+//Compare, confirm and check each round after player's entry 
 function playRound(playerSelection, computerSelection) {
     let roundMessage = `${playerName}: ${playerSelection} ⚔️ Computer: ${computerSelection}`;
 
