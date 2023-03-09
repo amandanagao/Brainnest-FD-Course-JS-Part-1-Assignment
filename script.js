@@ -1,17 +1,16 @@
 //Game Functions Section
 
-//Greeting the player and the user friendly alerts
+//Greeting the player and user friendly alerts
 function playerIntroduction() {
-    let playerIntro = prompt("🌟 Hey there! Nice to meet ya! What's your name? 🌟");
-    playerName = playerIntro;
-    if((playerName == null ) || (playerName == "")) {
+    playerName = prompt("🌟 Hey there! Nice to meet ya! What's your name? 🌟");
+    if((playerName == null ) || (playerName.trim() == "")) {
         alert("😱 So, I'm scared of ghosts! 👻 And I won't be playing with one!! Byeee!💨");
         validRound = 5;
         gameOver(2);
     } else {
-        playerIntro = playerIntro.trim();
-        let firstLetter = playerIntro.charAt(0).toUpperCase();
-        playerName = firstLetter + playerIntro.slice(1);
+        playerName = playerName.trim();
+        let firstLetter = playerName.charAt(0).toUpperCase();
+        playerName = firstLetter + playerName.slice(1);
         alert(`Hi, ${playerName}! Let's play some Rock-Paper-Scissors, shall we? Best of 5, okay? 🤩`);
     }
 }
@@ -48,7 +47,7 @@ function playerPlay() {
 
 //Validate the player selection
 function errorCheck(playerOption) {
-    if((playerOption !== "rock") && (playerOption !== "paper") && (playerOption !== "scissors") && (playerOption !== null)) {
+    if((playerOption !== "rock") && (playerOption !== "paper") && (playerOption !== "scissors")) {
         alert("❌ Error! Please check your choice again! ❌");
     } else {
         const computerSelection = computerPlay(computerPlayArray);
@@ -81,7 +80,7 @@ function playRound(playerSelection, computerSelection) {
         case "paper":
             if(computerSelection == "paper") {
                 alert(roundMessage);
-                alert("It's a tie! 👔");
+                alert("It's a tie! 👔 Nobody gets a point!");
             } else if(computerSelection == "scissors") {
                 alert(roundMessage);
                 alert("You lose! 💀");
@@ -96,7 +95,7 @@ function playRound(playerSelection, computerSelection) {
         case "scissors":
             if(computerSelection == "scissors") {
                 alert(roundMessage);
-                alert("It's a tie! 👔");
+                alert("It's a tie! 👔 Nobody gets a point!");
             } else if(computerSelection == "rock") {
                 alert(roundMessage);
                 alert("You lose! 💀");
