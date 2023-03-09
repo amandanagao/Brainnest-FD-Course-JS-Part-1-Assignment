@@ -1,4 +1,6 @@
 //Game Functions Section
+
+//Introduction of the player
 function playerIntroduction() {
     let playerIntro = prompt("🌟 Hey there! Nice to meet ya! What's your name? 🌟");
     playerName = playerIntro;
@@ -12,10 +14,21 @@ function playerIntroduction() {
     }
 }
 
+//Handle the number of rounds
+function gameRoundHandle() {
+    while(validRound < 5) {
+        gameStart();
+    }
+    if (exitFlag == 0) {
+        gameOver();
+    }
+}
+
 function gameStart() {
     playerPlay();
 }
 
+//Computer and Player plays
 function computerPlay() {
     const computerRandomPlay = computerPlayArray[Math.floor(Math.random() * 3)];
     return computerRandomPlay;
@@ -31,6 +44,7 @@ function playerPlay() {
     }
 }
 
+//Validate the player selection
 function errorCheck(playerOption) {
     if((playerOption !== "rock") && (playerOption !== "paper") && (playerOption !== "scissors") && (playerOption !== null)) {
         alert("❌ Error! Please check your choice again! ❌");
@@ -42,6 +56,7 @@ function errorCheck(playerOption) {
     }
 }
 
+//Compare and confirm the round
 function playRound(playerSelection, computerSelection) {
     let roundMessage = `${playerName}: ${playerSelection} ⚔️ Computer: ${computerSelection}`;
 
@@ -49,7 +64,7 @@ function playRound(playerSelection, computerSelection) {
         case "rock":
             if(computerSelection == "rock") {
                 alert(roundMessage);
-                alert("It's a tie! 👔");
+                alert("It's a tie! 👔 Nobody gets a point!");
             } else if(computerSelection == "paper") {
                 alert(roundMessage);
                 alert("You lose! 💀");
@@ -92,27 +107,47 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+//Check the end of the game
 function gameOver(flag) {
     if(flag == 1) {
         alert("🤨 Cancelling your play?? So you don't wanna play anymore with me? 🥲 Okay then, bye! 👋🏻");
-        console.log("Game finished");
+        console.log("--Game finished--");
         validRound = 5;
         exitFlag = 1;
     } else if (flag == 2) {
         console.log("The computer ran away!");
         exitFlag = 2;
     } else {
-        let finalScoreMessage = `🏅 Final Score: ${playerName}: ${playerScore} ⚔️ Computer: ${computerScore} 🏅`;
+        let finalScoreMessage = `🏅 Final Score - ${playerName}: ${playerScore} ⚔️ Computer: ${computerScore} 🏅`;
         if(playerScore > computerScore) {
             alert("🌟 Congrats! You won! Well played! 🎉");
             alert(finalScoreMessage);
+            console.log("--Game finished--");
+            playAgain();
         } else if(playerScore < computerScore) {
             alert("Oops! Sorry mate, but you lost! 😎");
             alert(finalScoreMessage);
+            console.log("--Game finished--");
+            playAgain();
         } else {
             alert("It's a tie! 😅");
             alert(finalScoreMessage);
+            console.log("--Game finished--");
+            playAgain();
         }
+    }
+}
+
+//Confirm the next match
+function playAgain() {
+    let nextMatch = confirm("Wanna play again? ⚔️");
+    if (nextMatch) {
+        validRound = 0;
+        playerScore = 0;
+        computerScore = 0;
+        gameRoundHandle();
+    } else {
+        alert("Okay then! See you next time! Bye! 👋🏻");
     }
 }
 //End of Game Functions Section
@@ -125,12 +160,7 @@ let exitFlag = 0;
 
 const computerPlayArray = ["rock", "paper", "scissors"];
 
+//Game Initialization
 playerIntroduction();
 
-while(validRound < 5) {
-    gameStart();
-}
-
-if (exitFlag == 0) {
-    gameOver();
-}
+gameRoundHandle();
