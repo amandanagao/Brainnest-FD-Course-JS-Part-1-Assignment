@@ -9,7 +9,9 @@ function playerIntroduction() {
         validRound = 5;
         gameOver(2);
     } else {
-        playerName = playerIntro.trim();
+        playerIntro = playerIntro.trim();
+        let firstLetter = playerIntro.charAt(0).toUpperCase();
+        playerName = firstLetter + playerIntro.slice(1);
         alert(`Hi, ${playerName}! Let's play some Rock-Paper-Scissors, shall we? Best of 5, okay? 🤩`);
     }
 }
