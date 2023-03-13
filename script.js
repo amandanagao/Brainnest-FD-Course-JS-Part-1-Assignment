@@ -31,7 +31,7 @@ function gameStart() {
 
 //Choice of computer and player
 function computerPlay() {
-    const computerRandomPlay = computerPlayArray[Math.floor(Math.random() * 3)];
+    const computerRandomPlay = playArray[Math.floor(Math.random() * 3)];
     return computerRandomPlay;
 }
 
@@ -47,14 +47,14 @@ function playerPlay() {
 
 //Validate the player selection
 function errorCheck(playerOption) {
-    if((playerOption !== "rock") && (playerOption !== "paper") && (playerOption !== "scissors")) {
-        alert("❌ Error! Please check your choice again! ❌");
-    } else {
-        const computerSelection = computerPlay(computerPlayArray);
+    if(playArray.includes(playerOption)) {
+        const computerSelection = computerPlay(playArray);
         playRound(playerOption, computerSelection);
         validRound++;
         console.log(`Round: ${validRound} - ${playerName}: ${playerScore} ✖️ Computer: ${computerScore}`);
-    }
+    } else {
+        alert("❌ Error! Please check your choice again! ❌");
+    } 
 }
 
 //Compare, confirm and check each round after player's entry 
@@ -111,10 +111,16 @@ function playRound(playerSelection, computerSelection) {
 //Check the end of the game
 function gameOver(flag) {
     if(flag == 1) {
-        alert("🤨 Cancelling your play?? So you don't wanna play anymore with me? 🥲 Okay then, bye! 👋🏻");
-        console.log("--Game finished--");
-        validRound = 5;
-        exitFlag = 1;
+        let confirmExit = confirm("🤨 Cancelling your play?? Are you sure you wanna quit?");
+        if(confirmExit) {
+            alert("So you don't wanna play anymore with me? 🥲 Okay then, bye! 👋🏻");
+            console.log("--Game finished--");
+            validRound = 5;
+            exitFlag = 1;
+        } else {
+            alert("Nice! Let's continue then! 😏");
+            gameRoundHandle();
+        }
     } else if (flag == 2) {
         console.log("The computer ran away!");
         exitFlag = 2;
@@ -159,7 +165,7 @@ let computerScore = 0;
 let validRound = 0;
 let exitFlag = 0;
 
-const computerPlayArray = ["rock", "paper", "scissors"];
+const playArray = ["rock", "paper", "scissors"];
 
 //Game Initialization
 playerIntroduction();
