@@ -2,7 +2,6 @@
 
 //Greeting the player and user friendly alerts
 function playerIntroduction() {
-    alert("First of all, please open your Console (Press F12) so we can start our game! 🤓");
     playerName = prompt("🌟 Hey there! Nice to meet ya! What's your name? 🌟");
     if((playerName == null ) || (playerName.trim() == "")) {
         alert("😱 So, I'm scared of ghosts! 👻 And I won't be playing with one!! Byeee!💨");
@@ -169,6 +168,7 @@ let exitFlag = 0;
 const playArray = ["rock", "paper", "scissors"];
 
 //Game Initialization
+alert("First of all, please open your Console (Press F12) so we can start our game! 🤓");
 playerIntroduction();
 
 gameRoundHandle();
